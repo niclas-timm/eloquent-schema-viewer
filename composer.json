@@ -1,0 +1,52 @@
+{
+    "name": "niclas-timm/eloquent-schema-viewer",
+    "version": "1.0.0",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "NiclasTimm\\EloquentSchemaViewer\\": "src/",
+            "NiclasTimm\\EloquentSchemaViewer\\Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Niclas",
+            "email": "niclastimmdev@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^8.13",
+        "phpunit/phpunit": "^10.4"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NiclasTimm\\EloquentSchemaViewer\\EloquentSchemaViewerServiceProvider"
+            ]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "test": [
+            "@php vendor/bin/phpunit"
+        ]
+    }
+}
