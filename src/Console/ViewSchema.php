@@ -8,25 +8,24 @@ use Illuminate\Support\Facades\Schema;
 
 class ViewSchema extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'eloquent-schema-viewer:view
                             {--T|table= : Name of the database table (required if model is not provided)}
                             {--M|model= : Name of the database table (required if table is not provided)}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Shows the database schema of an eloquent model';
+
+    protected function configure()
+    {
+        $this->setAliases([
+            'esv:view',
+            'esv:view-schema',
+        ]);
+        parent::configure();
+    }
 
     public function handle(): void
     {
-        if (! $this->option('table') && ! $this->option('model')) {
+        if (!$this->option('table') && !$this->option('model')) {
             $this->error('Please provide a table or model name');
 
             exit(1);
@@ -34,7 +33,7 @@ class ViewSchema extends Command
 
         $table = $this->getTable();
 
-        if (! Schema::hasTable($table)) {
+        if (!Schema::hasTable($table)) {
             $this->error('Table '.$table.' does not exist');
 
             exit(1);
@@ -73,7 +72,7 @@ class ViewSchema extends Command
                 $column->getName(),
                 $column->getType()->getName(),
                 $column->getAutoincrement() ? 'Yes' : '',
-                ! $column->getNotnull() ? 'Yes' : '',
+                !$column->getNotnull() ? 'Yes' : '',
                 $column->getDefault(),
             ];
         }, array_values($columns));

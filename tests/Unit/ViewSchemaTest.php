@@ -10,6 +10,6 @@ class ViewSchemaTest extends TestCase
     /** @test */
     public function it_requires_model_or_table_name()
     {
-        Artisan::call('eloquent-schema-viewer:view')->assertFailed();
+        Artisan::call('esv:view')->assertFailed();
     }
 }
