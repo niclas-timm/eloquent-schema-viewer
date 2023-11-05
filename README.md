@@ -34,4 +34,4 @@ One of those two options must be set. Otherwise, the command will fail.
 ## Aliases
 
 Since the command `eloquent-schema-viewer:view` is quite long, we configured some shorter aliases:
-`esv:v` and `esv:view-schema` do the same thing as `eloquent-schema-viewer:view`.
+`esv:view` and `esv:view-schema` do the same thing as `eloquent-schema-viewer:view`.
